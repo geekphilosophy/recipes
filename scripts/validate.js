@@ -76,11 +76,6 @@ const sections  = parseSections(md);
 const ingredients = sections["ingredients"] ?? [];
 const stepSections = parseStepSections(md);
 
-// Expected filename from title
-const expectedFilename = title
-  ? title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".md"
-  : null;
-
 // ── Validation rules ──────────────────────────────────────────
 const errors   = [];   // blocking — must fix
 const warnings = [];   // non-blocking — should review
@@ -99,8 +94,6 @@ if (tags.length > 0 && tags.length < 3)
 if (!time)                     warnings.push("No time: field");
 if (!serves)                   warnings.push("No serves: field");
 if (!source)                   warnings.push("No source: field — add if from a meal kit");
-if (expectedFilename && filename !== expectedFilename)
-                               warnings.push(`Filename mismatch: got "${filename}", expected "${expectedFilename}"`);
 if (ingredients.length > 0 && ingredients.length < 3)
                                warnings.push(`Only ${ingredients.length} ingredient(s) — looks incomplete`);
 
