@@ -668,6 +668,22 @@
     return parts.filter(Boolean).join(' ');
   }
 
+  // ── Grocery: pantry ignore list ──────────────────────────
+  const GROCERY_IGNORE_TERMS = [
+    'olive oil', 'sesame oil', 'red pepper flakes', 'salt',
+    'black pepper', 'baking powder', 'ancho powder', 'chili powder',
+    'all-purpose flour', 'egg',
+  ];
+
+  function isGroceryIgnored(name) {
+    // Strip parenthetical descriptions before matching so e.g.
+    // "flour spice blend (2 tbsp flour…)" doesn't match "flour"
+    const n = name.toLowerCase().replace(/\(.*?\)/g, '').trim();
+    if (n.includes('peanut')) return false;  // keep peanut butter
+    if (/\bbutter\b/.test(n)) return true;   // butter (not buttermilk — no word boundary)
+    return GROCERY_IGNORE_TERMS.some(t => n.includes(t));
+  }
+
   // ── Grocery: selection UI ─────────────────────────────────
   function toggleSelect(r, cardEl, e) {
     e.stopPropagation();
@@ -700,7 +716,7 @@
   function showGrocery() {
     const recipes = allRecipes.filter(r => selectedRecipes.has(r.filename));
     const allLines = recipes.flatMap(r => extractIngredients(r.markdown));
-    const items = consolidate(allLines);
+    const items = consolidate(allLines).filter(item => !isGroceryIgnored(item.name));
 
     document.getElementById('grocery-title').textContent =
       recipes.map(r => r.title).join(' · ');

@@ -147,6 +147,32 @@ test("extractIngredients: empty recipe",
   extractIngredients("# No Ingredients\n## Steps\n- Do something"),
   []);
 
+// ── isGroceryIgnored ─────────────────────────────────────────────────────────
+const { isGroceryIgnored } = ctx;
+
+test("ignore: olive oil",          isGroceryIgnored("olive oil"),              true);
+test("ignore: olive oil with note",isGroceryIgnored("olive oil (plus more for chicken)"), true);
+test("ignore: sesame oil",         isGroceryIgnored("sesame oil"),             true);
+test("ignore: red pepper flakes",  isGroceryIgnored("red pepper flakes to taste"), true);
+test("ignore: salt and pepper",    isGroceryIgnored("salt and pepper to taste"), true);
+test("ignore: salt alone",         isGroceryIgnored("salt"),                   true);
+test("ignore: coarse black pepper",isGroceryIgnored("coarse black pepper"),    true);
+test("ignore: butter",             isGroceryIgnored("butter"),                 true);
+test("ignore: butter with prefix", isGroceryIgnored("+ 1 tbsp butter"),        true);
+test("ignore: baking powder",      isGroceryIgnored("baking powder"),          true);
+test("ignore: ancho powder",       isGroceryIgnored("ground ancho powder"),    true);
+test("ignore: chili powder",       isGroceryIgnored("chili powder"),           true);
+test("ignore: eggs",               isGroceryIgnored("free range brown eggs"),  true);
+test("ignore: all-purpose flour",  isGroceryIgnored("all-purpose flour"),      true);
+
+test("keep: peanut butter",        isGroceryIgnored("peanut butter"),          false);
+test("keep: buttermilk",           isGroceryIgnored("buttermilk"),             false);
+test("keep: bell pepper",          isGroceryIgnored("greens bell pepper"),     false);
+test("keep: chipotle pepper",      isGroceryIgnored("ground chipotle pepper"), false);
+test("keep: coconut oil",          isGroceryIgnored("organic virgin coconut oil"), false);
+test("keep: flour spice blend",    isGroceryIgnored("flour spice blend (2 tbsp cornstarch, 2 tbsp flour)"), false);
+test("keep: spice blend with chili powder in desc", isGroceryIgnored("spice blend (1 tsp cumin, 1 tsp chili powder)"), false);
+
 // ── tsp / tbsp consolidation ──────────────────────────────────────────────────
 const tspTbsp = consolidate(["2 tsp garlic", "2 tbsp garlic"]);
 test("tsp+tbsp: combine into one item", tspTbsp.length, 1);
