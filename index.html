@@ -679,8 +679,7 @@
     // Strip parenthetical descriptions before matching so e.g.
     // "flour spice blend (2 tbsp flour…)" doesn't match "flour"
     const n = name.toLowerCase().replace(/\(.*?\)/g, '').trim();
-    if (n.includes('peanut')) return false;  // keep peanut butter
-    if (/\bbutter\b/.test(n)) return true;   // butter (not buttermilk — no word boundary)
+    if (/\bbutter\b/.test(n)) return true;   // butter, peanut butter, etc. (not buttermilk)
     return GROCERY_IGNORE_TERMS.some(t => n.includes(t));
   }
 

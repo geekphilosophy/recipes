@@ -165,7 +165,8 @@ test("ignore: chili powder",       isGroceryIgnored("chili powder"),           t
 test("ignore: eggs",               isGroceryIgnored("free range brown eggs"),  true);
 test("ignore: all-purpose flour",  isGroceryIgnored("all-purpose flour"),      true);
 
-test("keep: peanut butter",        isGroceryIgnored("peanut butter"),          false);
+test("ignore: peanut butter",      isGroceryIgnored("peanut butter"),          true);
+test("keep: roasted peanuts",      isGroceryIgnored("roasted peanuts"),        false);
 test("keep: buttermilk",           isGroceryIgnored("buttermilk"),             false);
 test("keep: bell pepper",          isGroceryIgnored("greens bell pepper"),     false);
 test("keep: chipotle pepper",      isGroceryIgnored("ground chipotle pepper"), false);

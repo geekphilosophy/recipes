@@ -2,9 +2,6 @@ name: Rebuild Recipe Index
 
 on:
   push:
-    paths:
-      - "recipes/**"
-      - "index.html"
     branches:
       - main
 
