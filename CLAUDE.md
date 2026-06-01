@@ -11,6 +11,9 @@ node scripts/validate.js recipes/my-recipe.md
 # Rebuild index.json locally after editing recipes
 node scripts/build-index.js
 
+# Run grocery-list regression tests
+node scripts/test-grocery.js
+
 # Add a recipe (validate → preview loop → commit → push)
 ./add-recipe.sh path/to/recipe.md
 
@@ -27,6 +30,7 @@ python3 -m http.server
 - `index.html` — the entire site in one vanilla JS file (no framework)
 - `scripts/build-index.js` — reads `recipes/`, writes `index.json`; uses only Node built-ins; expects to run from `scripts/` (uses `__dirname + ".."`  to find repo root)
 - `scripts/validate.js` — parses and previews a single recipe; exit 0 = valid, exit 1 = blocking errors
+- `scripts/test-grocery.js` — regression tests for ingredient parsing/consolidation; extracts functions directly from `index.html` at runtime so tests always cover the live code
 - `.github/workflows/build.yml` — triggers `node scripts/build-index.js` on any push touching `recipes/**`, then commits the updated `index.json` back with `[skip ci]`
 
 ## Recipe markdown format
@@ -54,8 +58,11 @@ Filename must be kebab-case matching the title slug (validator warns on mismatch
 
 ## index.html internals
 
-The site is a single-page app with two views toggled via CSS classes (`hidden` / `visible`):
+The site is a single-page app with three views toggled via CSS classes (`hidden` / `visible`):
 - **Library view** (`#grid-view`) — recipe cards rendered from `allRecipes`
 - **Detail view** (`#detail`) — full recipe rendered by a hand-rolled `renderMD()` markdown parser
+- **Grocery view** (`#grocery`) — consolidated shopping list generated from selected recipes
 
 Search scoring (`score()` function): title match = 3 pts, tag match = 2 pts, ingredient or full-text match = 1 pt. Meta fields (`tags:`, `time:`, `serves:`, `source:`) are hidden in the rendered detail via `.rml { display: none }`.
+
+**Grocery list feature:** each card has a circle select button (top-right). Selecting up to 5 recipes reveals a fixed bottom bar with a "Shopping List →" button. The grocery view parses ingredients from `r.markdown` (only lines under `## Ingredients`, not step bullets), consolidates by `(unit, name)` key — summing amounts where possible, deduplicating pantry staples — and renders a printable checklist. Parsing functions (`extractIngredients`, `parseIngredient`, `consolidate`, `formatIngredient`) live in the `// ── Grocery: ingredient parsing` section of the script; `test-grocery.js` extracts and tests them directly.

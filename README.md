@@ -20,7 +20,8 @@ repo/
 ├── index.html                      ← the entire site: search, library, detail view
 ├── scripts/
 │   ├── build-index.js              ← parses recipes/ → index.json (run by CI)
-│   └── validate.js                 ← previews and validates a single recipe file
+│   ├── validate.js                 ← previews and validates a single recipe file
+│   └── test-grocery.js             ← regression tests for ingredient parsing/consolidation
 ├── .github/workflows/
 │   └── build.yml                   ← triggers build-index.js on push to recipes/
 └── add-recipe.sh                   ← CLI helper: validate → preview → commit → push
@@ -192,6 +193,7 @@ Visit `https://you.github.io/recipes/` from any browser, no login required.
 - **Search** — filters by title, tags, and full text; tag matches rank higher
 - **Detail** — full rendered recipe with ingredient list and steps
 - **Random** — picks a recipe at random from the library
+- **Grocery list** — select up to 5 recipes, click "Shopping List →" for a consolidated, printable checklist; duplicate ingredients are merged and quantities summed where possible
 
 Keyboard shortcuts: `/` to focus the search box, `Esc` to return to the library.
 

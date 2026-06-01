@@ -294,6 +294,62 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .fadein { animation: fadeIn .2s ease both; }
+
+    /* ── Card selection ── */
+    .card { position: relative; }
+    .card-title { padding-right: 32px; }
+    .card-select {
+      position: absolute; top: 10px; right: 10px;
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid var(--border); background: var(--paper);
+      cursor: pointer; font-size: 12px; color: transparent;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s; line-height: 1; padding: 0;
+    }
+    .card-select:hover { border-color: var(--sage); }
+    .card.selected .card-select { border-color: var(--sage); background: var(--sage); color: white; }
+    .card.selected { border-left-color: var(--green); background: #f3faf6; }
+
+    /* ── Selection bar ── */
+    #selection-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+      background: var(--forest); color: white;
+      padding: 11px 16px; display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 -2px 12px rgba(0,0,0,.25);
+    }
+    #selection-bar .sel-label { flex: 1; font-size: 13px; }
+    .sel-btn {
+      border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.1);
+      color: white; border-radius: 8px; padding: 6px 13px;
+      cursor: pointer; font-size: 12px; font-family: var(--sans);
+    }
+    .sel-btn:hover { background: rgba(255,255,255,.2); }
+    .sel-btn.primary { background: var(--sage); border-color: var(--sage); color: var(--forest); font-weight: 600; }
+    .sel-btn.primary:hover { background: var(--mint); }
+
+    /* ── Grocery view ── */
+    #grocery { display: none; }
+    #grocery.visible { display: block; }
+    .grocery-card {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px 24px;
+      box-shadow: 0 2px 12px rgba(26,61,43,.08);
+    }
+    .grocery-card h2 { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--green); margin: 0 0 4px; text-transform: uppercase; letter-spacing: 1.2px; padding-bottom: 0; border-bottom: none; }
+    .grocery-subtitle { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 16px; line-height: 1.3; }
+    .grocery-list { list-style: none; padding: 0; margin: 0; }
+    .grocery-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--parchment); font-size: 14px; line-height: 1.4; }
+    .grocery-item:last-child { border-bottom: none; }
+    .grocery-item input[type=checkbox] { margin-top: 2px; accent-color: var(--sage); flex-shrink: 0; width: 15px; height: 15px; cursor: pointer; }
+    .grocery-item label { cursor: pointer; }
+    .grocery-item.checked label { text-decoration: line-through; color: var(--mist); }
+
+    @media print {
+      header, .search-bar, #selection-bar, .detail-topbar { display: none !important; }
+      body { overflow: visible; height: auto; }
+      main { overflow: visible; }
+      .grocery-item input[type=checkbox] { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -332,12 +388,35 @@
         </div>
       </div>
     </div>
+
+    <!-- Grocery list view -->
+    <div id="grocery">
+      <div class="detail-topbar">
+        <button id="btn-back-grocery">&#8592; Library</button>
+        <button id="btn-print" class="sel-btn" style="border-color:var(--border);background:none;color:var(--green)">&#128438; Print</button>
+      </div>
+      <div class="detail-content">
+        <div class="grocery-card">
+          <h2>Shopping List</h2>
+          <div class="grocery-subtitle" id="grocery-title"></div>
+          <ul class="grocery-list" id="grocery-items"></ul>
+        </div>
+      </div>
+    </div>
   </main>
+
+  <div id="selection-bar" style="display:none">
+    <span class="sel-label" id="sel-count"></span>
+    <button class="sel-btn" id="btn-clear-sel">Clear</button>
+    <button class="sel-btn primary" id="btn-gen-list">Shopping List &#8594;</button>
+  </div>
 
 <script>
   // ── State ─────────────────────────────────────────────────
   let allRecipes = [];
   let currentQuery = "";
+  const selectedRecipes = new Set();
+  const MAX_SELECT = 5;
 
   // ── Fetch index.json ──────────────────────────────────────
   async function loadRecipes() {
@@ -441,11 +520,13 @@
   function makeCard(r) {
     const el = document.createElement("div");
     el.className = "card fadein";
+    if (selectedRecipes.has(r.filename)) el.classList.add("selected");
 
     const tags = (r.tags || []).slice(0, 5);
     const ql = currentQuery.toLowerCase();
 
     el.innerHTML = `
+      <button class="card-select" title="Select for shopping list">${selectedRecipes.has(r.filename) ? '✓' : ''}</button>
       ${r.source ? `<div class="card-source">${esc(r.source)}</div>` : ""}
       <div class="card-title">${esc(r.title)}</div>
       <div class="card-meta">
@@ -456,6 +537,7 @@
         ${tags.map(t => `<span class="tag${ql && t.toLowerCase().includes(ql) ? " match" : ""}">${esc(t)}</span>`).join("")}
       </div>
     `;
+    el.querySelector('.card-select').addEventListener('click', e => toggleSelect(r, el, e));
     el.addEventListener("click", () => showDetail(r));
     return el;
   }
@@ -494,6 +576,145 @@
     document.getElementById("detail").classList.remove("visible");
   }
 
+  // ── Grocery: ingredient parsing & consolidation ───────────
+  function extractIngredients(md) {
+    const lines = md.split('\n');
+    let inSection = false;
+    const result = [];
+    for (const ln of lines) {
+      if (/^## ingredients/i.test(ln)) { inSection = true; continue; }
+      if (/^##/.test(ln) && inSection) break;
+      if (inSection && /^-\s/.test(ln)) result.push(ln.replace(/^-\s+/, '').trim());
+    }
+    return result;
+  }
+
+  function parseAmount(s) {
+    if (!s) return null;
+    s = s.trim();
+    if (/^\d+\s+\d+\/\d+$/.test(s)) {
+      const [w, f] = s.split(' ');
+      const [n, d] = f.split('/');
+      return parseInt(w) + parseInt(n) / parseInt(d);
+    }
+    if (s.includes('/')) { const [n, d] = s.split('/'); return parseInt(n) / parseInt(d); }
+    return parseFloat(s);
+  }
+
+  const UNITS_RE = /^(packages?|packs?|cups?|tbsps?|tablespoons?|tsps?|teaspoons?|oz|ounces?|grams?|g|kg|lbs?|pounds?|ml|litres?|liters?|cloves?|cans?|heads?|bunche?s?|stalks?|slices?|pieces?|sprigs?|sheets?)\s+/i;
+  const UNIT_NORM = { packages:'package', packs:'package', pack:'package', cups:'cup', tbsps:'tbsp', tablespoon:'tbsp', tablespoons:'tbsp', tsps:'tsp', teaspoon:'tsp', teaspoons:'tsp', ounces:'oz', ounce:'oz', grams:'g', gram:'g', lbs:'lb', pounds:'lb', pound:'lb', litres:'l', liters:'l', cloves:'clove', cans:'can', heads:'head', bunches:'bunch', stalks:'stalk', slices:'slice', pieces:'piece', sprigs:'sprig', sheets:'sheet' };
+
+  function parseIngredient(line) {
+    line = line.trim().replace(/^approx\.?\s+/i, '');
+    const amtM = line.match(/^(\d+(?:\s+\d+\/\d+|\/\d+)?)\s+/);
+    let amount = null, rest = line;
+    if (amtM) { amount = parseAmount(amtM[1]); rest = line.slice(amtM[0].length); }
+    const unitM = rest.match(UNITS_RE);
+    let unit = null;
+    if (unitM) {
+      unit = UNIT_NORM[unitM[1].toLowerCase()] ?? unitM[1].toLowerCase().replace(/s$/, '');
+      rest = rest.slice(unitM[0].length);
+    }
+    return { amount, unit, name: rest.trim().toLowerCase() };
+  }
+
+  function consolidate(lines) {
+    const groups = new Map();
+    for (const line of lines) {
+      const p = parseIngredient(line);
+      const key = (p.unit ?? '') + '|' + p.name;
+      if (groups.has(key)) {
+        const g = groups.get(key);
+        if (g.amount !== null && p.amount !== null) g.amount += p.amount;
+        // both null → dedup silently
+      } else {
+        groups.set(key, { ...p });
+      }
+    }
+    return [...groups.values()].sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  const FRAC_MAP = { 0.5:'½', 0.25:'¼', 0.75:'¾', 0.333:'⅓', 0.667:'⅔', 0.125:'⅛' };
+  function fmtAmount(n) {
+    if (n === null) return '';
+    const w = Math.floor(n), f = Math.round((n - w) * 1000) / 1000;
+    const fs = FRAC_MAP[f] ?? (f > 0 ? n.toFixed(2) : '');
+    return ((w > 0 ? String(w) : '') + fs) || String(n);
+  }
+  const NO_PLURAL = new Set(['g','kg','lb','oz','ml','l','tbsp','tsp']);
+  function formatIngredient(item) {
+    const parts = [];
+    if (item.amount !== null) parts.push(fmtAmount(item.amount));
+    if (item.unit) {
+      const plural = item.amount !== null && item.amount > 1 && !NO_PLURAL.has(item.unit);
+      parts.push(plural ? item.unit + 's' : item.unit);
+    }
+    parts.push(item.name);
+    return parts.filter(Boolean).join(' ');
+  }
+
+  // ── Grocery: selection UI ─────────────────────────────────
+  function toggleSelect(r, cardEl, e) {
+    e.stopPropagation();
+    const btn = cardEl.querySelector('.card-select');
+    if (!selectedRecipes.has(r.filename) && selectedRecipes.size >= MAX_SELECT) {
+      btn.style.borderColor = 'var(--red)';
+      setTimeout(() => btn.style.borderColor = '', 600);
+      return;
+    }
+    if (selectedRecipes.has(r.filename)) {
+      selectedRecipes.delete(r.filename);
+      cardEl.classList.remove('selected');
+      btn.textContent = '';
+    } else {
+      selectedRecipes.add(r.filename);
+      cardEl.classList.add('selected');
+      btn.textContent = '✓';
+    }
+    updateSelectionBar();
+  }
+
+  function updateSelectionBar() {
+    const bar = document.getElementById('selection-bar');
+    const n = selectedRecipes.size;
+    bar.style.display = n > 0 ? 'flex' : 'none';
+    document.getElementById('sel-count').textContent =
+      `${n} of ${MAX_SELECT} recipe${n !== 1 ? 's' : ''} selected`;
+  }
+
+  function showGrocery() {
+    const recipes = allRecipes.filter(r => selectedRecipes.has(r.filename));
+    const allLines = recipes.flatMap(r => extractIngredients(r.markdown));
+    const items = consolidate(allLines);
+
+    document.getElementById('grocery-title').textContent =
+      recipes.map(r => r.title).join(' · ');
+
+    const ul = document.getElementById('grocery-items');
+    ul.innerHTML = '';
+    items.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.className = 'grocery-item';
+      const id = `gi-${i}`;
+      li.innerHTML = `<input type="checkbox" id="${id}"><label for="${id}">${esc(formatIngredient(item))}</label>`;
+      li.querySelector('input').addEventListener('change', e => {
+        li.classList.toggle('checked', e.target.checked);
+      });
+      ul.appendChild(li);
+    });
+
+    document.getElementById('grid-view').classList.add('hidden');
+    document.getElementById('selection-bar').style.display = 'none';
+    document.getElementById('grocery').classList.add('visible');
+    document.querySelector('main').scrollTo(0, 0);
+  }
+
+  function hideGrocery() {
+    document.getElementById('grocery').classList.remove('visible');
+    document.getElementById('grid-view').classList.remove('hidden');
+    updateSelectionBar();
+  }
+
   // ── Status helper ─────────────────────────────────────────
   function setStatus(type, heading, detail) {
     const icons = { loading: "⏳", error: "⚠️", empty: "🌿" };
@@ -519,9 +740,26 @@
     showDetail(allRecipes[Math.floor(Math.random() * allRecipes.length)]);
   });
 
+  document.getElementById("btn-clear-sel").addEventListener("click", () => {
+    selectedRecipes.clear();
+    document.querySelectorAll(".card.selected").forEach(c => {
+      c.classList.remove("selected");
+      c.querySelector(".card-select").textContent = "";
+    });
+    updateSelectionBar();
+  });
+
+  document.getElementById("btn-gen-list").addEventListener("click", showGrocery);
+  document.getElementById("btn-back-grocery").addEventListener("click", hideGrocery);
+  document.getElementById("btn-print").addEventListener("click", () => window.print());
+
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") showList();
-    if (e.key === "/" && document.getElementById("detail").style.display === "none") {
+    if (e.key === "Escape") {
+      if (document.getElementById("grocery").classList.contains("visible")) hideGrocery();
+      else showList();
+    }
+    if (e.key === "/" && !document.getElementById("detail").classList.contains("visible")
+                      && !document.getElementById("grocery").classList.contains("visible")) {
       e.preventDefault();
       document.getElementById("search").focus();
     }
