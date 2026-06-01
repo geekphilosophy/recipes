@@ -147,6 +147,32 @@ test("extractIngredients: empty recipe",
   extractIngredients("# No Ingredients\n## Steps\n- Do something"),
   []);
 
+// ── tsp / tbsp consolidation ──────────────────────────────────────────────────
+const tspTbsp = consolidate(["2 tsp garlic", "2 tbsp garlic"]);
+test("tsp+tbsp: combine into one item", tspTbsp.length, 1);
+test("tsp+tbsp: sum to 8 tsp (stored)", tspTbsp[0].amount, 8);
+
+// 8 tsp is not a multiple of 3, so should display as tsp
+test("tsp+tbsp: 8 tsp displays as tsp",
+  formatIngredient(tspTbsp[0]),
+  "8 tsp garlic");
+
+// 6 tsp is a clean multiple of 3 → should display as 2 tbsp
+test("tsp+tbsp: 6 tsp displays as 2 tbsp",
+  formatIngredient({ amount: 6, unit: "tsp", name: "garlic" }),
+  "2 tbsp garlic");
+
+// 9 tsp → 3 tbsp
+test("tsp+tbsp: 9 tsp displays as 3 tbsp",
+  formatIngredient({ amount: 9, unit: "tsp", name: "garlic" }),
+  "3 tbsp garlic");
+
+// two tbsp-only ingredients → stored as tsp, displayed as tbsp
+const twoTbsp = consolidate(["2 tbsp garlic", "4 tbsp garlic"]);
+test("tsp+tbsp: 2 tbsp + 4 tbsp = 6 tbsp",
+  formatIngredient(twoTbsp[0]),
+  "6 tbsp garlic");
+
 // ── Summary ───────────────────────────────────────────────────────────────────
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed > 0 ? 1 : 0);

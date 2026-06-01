@@ -10,7 +10,7 @@ source: FreshPrep
 - 200 g mushrooms
 - 360g asparagus
 - 120g onion
-- 8 tsp minced garlic
+- 8 tsp garlic
 - 2/3 cup cream
 - 4 tsp orange juice concentrate
 - 2 tbsp white wine vinegar

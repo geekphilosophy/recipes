@@ -9,7 +9,7 @@ source: FreshPrep
 - 1 1/2 cups organic white quinoa
 - 240 g cucumber
 - 140 g onion
-- 2 tbsp minced garlic
+- 2 tbsp garlic
 - 2 tbsp minced ginger
 - 1 cup Greek yogurt
 - 1/2 cup whipping cream

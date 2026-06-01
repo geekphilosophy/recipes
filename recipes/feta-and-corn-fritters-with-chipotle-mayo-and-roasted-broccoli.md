@@ -16,7 +16,7 @@ source: FreshPrep
 - 2 tsp spice blend (1/2 tsp smoked paprika, 1/2 tsp roasted garlic powder)
 - 2 tsp ground chipotle pepper
 - 4 tbsp lime juice
-- 4 tsp minced garlic
+- 4 tsp garlic
 - 16 g cilantro
 - 80 g green onion
 - olive oil

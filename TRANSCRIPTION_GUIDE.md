@@ -9,6 +9,8 @@ Derived from real transcription decisions — update as new cases arise.
 
 **Always omit:** sambal — drop it from both the ingredient list and any step that references it. We never use it.
 
+**Garlic:** always list as `garlic`, never `minced garlic`. Garlic is always minced in this kitchen.
+
 **Pantry items** (not included in the kit) are listed without a quantity:
 - `- olive oil`
 - `- salt and pepper to taste`

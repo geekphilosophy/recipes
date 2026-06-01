@@ -618,10 +618,16 @@
     return { amount, unit, name: rest.trim().toLowerCase() };
   }
 
+  function normalizeTspTbsp(p) {
+    // Normalize tbsp → tsp so mixed-unit ingredients combine cleanly (1 tbsp = 3 tsp)
+    if (p.unit === 'tbsp' && p.amount !== null) return { ...p, amount: p.amount * 3, unit: 'tsp' };
+    return p;
+  }
+
   function consolidate(lines) {
     const groups = new Map();
     for (const line of lines) {
-      const p = parseIngredient(line);
+      const p = normalizeTspTbsp(parseIngredient(line));
       const key = (p.unit ?? '') + '|' + p.name;
       if (groups.has(key)) {
         const g = groups.get(key);
@@ -643,13 +649,22 @@
   }
   const NO_PLURAL = new Set(['g','kg','lb','oz','ml','l','tbsp','tsp']);
   function formatIngredient(item) {
-    const parts = [];
-    if (item.amount !== null) parts.push(fmtAmount(item.amount));
-    if (item.unit) {
-      const plural = item.amount !== null && item.amount > 1 && !NO_PLURAL.has(item.unit);
-      parts.push(plural ? item.unit + 's' : item.unit);
+    let { amount, unit, name } = item;
+    // If stored in tsp and a clean multiple of 3, display as tbsp
+    if (unit === 'tsp' && amount !== null) {
+      const rounded = Math.round(amount * 1000) / 1000;
+      if (rounded >= 3 && Math.abs(Math.round(rounded / 3) * 3 - rounded) < 0.001) {
+        amount = rounded / 3;
+        unit = 'tbsp';
+      }
     }
-    parts.push(item.name);
+    const parts = [];
+    if (amount !== null) parts.push(fmtAmount(amount));
+    if (unit) {
+      const plural = amount !== null && amount > 1 && !NO_PLURAL.has(unit);
+      parts.push(plural ? unit + 's' : unit);
+    }
+    parts.push(name);
     return parts.filter(Boolean).join(' ');
   }
 

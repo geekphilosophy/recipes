@@ -12,7 +12,7 @@ source: FreshPrep
 - 100 g red onion
 - 1 1/2 cups basmati rice
 - 2 tbsp butter
-- 4 tsp minced garlic
+- 4 tsp garlic
 - 8 tsp minced ginger
 - 4 tbsp sweet chili sauce
 - 10 tbsp soy blend (2 tbsp soy sauce, 1½ tbsp coconut sugar, 1 tbsp ketchup, 2 tsp rice vinegar)

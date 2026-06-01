@@ -16,7 +16,7 @@ source: FreshPrep
 - 6 tbsp roasted peanuts
 - 4 tbsp peanut butter
 - 2 tbsp lemongrass
-- 2 tbsp minced garlic
+- 2 tbsp garlic
 - 6 tbsp soy blend (1 tbsp lime juice, 1 tbsp GF soy sauce, 1 tbsp brown sugar)
 - 2 tbsp fish sauce
 - 2 tbsp sesame oil
