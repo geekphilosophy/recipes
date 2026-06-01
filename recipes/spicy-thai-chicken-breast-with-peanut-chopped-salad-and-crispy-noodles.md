@@ -1,25 +1,25 @@
 # Spicy Thai Chicken Breast with Peanut Chopped Salad & Crispy Noodles
 tags: chicken, thai, peanut, noodles, cabbage, carrot, spinach, basil, lime, soy, sesame, lemongrass, easy
 time: 30min
-serves: 2
+serves: 4
 source: FreshPrep
 
 ## Ingredients
-- 1 package chicken breast
-- 200 g shredded cabbage
-- 65 g shredded carrot
-- 40 g red onion
-- 60 g spinach
-- 8 g fresh basil
-- 1 lime
-- 15 g steam-fried noodles
-- 3 tbsp roasted peanuts
-- 2 tbsp peanut butter
-- 1 tbsp lemongrass
-- 1 tbsp minced garlic
-- 3 tbsp soy blend (1 tbsp lime juice, 1 tbsp GF soy sauce, 1 tbsp brown sugar)
-- 1 tbsp fish sauce
-- 1 tbsp sesame oil
+- 2 packages chicken breast
+- 400 g shredded cabbage
+- 130 g shredded carrot
+- 80 g red onion
+- 120 g spinach
+- 16 g fresh basil
+- 2 limes
+- 30 g steam-fried noodles
+- 6 tbsp roasted peanuts
+- 4 tbsp peanut butter
+- 2 tbsp lemongrass
+- 2 tbsp minced garlic
+- 6 tbsp soy blend (1 tbsp lime juice, 1 tbsp GF soy sauce, 1 tbsp brown sugar)
+- 2 tbsp fish sauce
+- 2 tbsp sesame oil
 - olive oil
 - salt and pepper to taste
 

@@ -44,9 +44,9 @@ in the steps where it occurs:
 
 ## Serving size
 
-- Always include `serves:` — it's required.
-- Read it from the card: look for "X Servings", "Serves X", or a family/couple badge.
-- If genuinely unclear from both sides of the card, ask before finalising.
+- Always set `serves: 4` regardless of what the card says.
+- If the card serves 2, scale all ingredient quantities ×2 and update any step measurements that reference specific volumes or counts (e.g. "add 1 cup water" → "add 2 cups water", "form into 8 balls" → "16 balls"). Skip unscalable staples like "olive oil" or "salt and pepper to taste".
+- If genuinely unclear how many the card serves, ask before finalising.
 
 ---
 

@@ -1,24 +1,24 @@
 # Feta & Corn Fritters with Chipotle Mayo & Roasted Broccoli
 tags: feta, corn, fritters, broccoli, chipotle, mayo, lime, cilantro, scallion, garlic, vegetarian, pan-fried
 time: 40min
-serves: 2
+serves: 4
 source: FreshPrep
 
 ## Ingredients
-- 400 g broccoli
-- 1 1/2 cups corn kernels
-- 1/2 cup feta cheese
-- 1 free range egg
-- 1/2 cup all-purpose flour
-- 2 tbsp buttermilk
-- 1 tsp baking powder
-- 1/2 cup mayonnaise
-- 1 tsp spice blend (1/2 tsp smoked paprika, 1/2 tsp roasted garlic powder)
-- 1 tsp ground chipotle pepper
-- 2 tbsp lime juice
-- 2 tsp minced garlic
-- 8 g cilantro
-- 40 g green onion
+- 800 g broccoli
+- 3 cups corn kernels
+- 1 cup feta cheese
+- 2 frees range egg
+- 1 cup all-purpose flour
+- 4 tbsp buttermilk
+- 2 tsp baking powder
+- 1 cup mayonnaise
+- 2 tsp spice blend (1/2 tsp smoked paprika, 1/2 tsp roasted garlic powder)
+- 2 tsp ground chipotle pepper
+- 4 tbsp lime juice
+- 4 tsp minced garlic
+- 16 g cilantro
+- 80 g green onion
 - olive oil
 - salt and pepper to taste
 
@@ -35,7 +35,7 @@ source: FreshPrep
 ### 3. Prepare Fritters
 - In a large bowl, whisk together buttermilk, eggs, baking powder and 1/2 tsp salt.
 - Stir in flour, corn, crumbled feta and scallions. Mix well.
-- Form mixture into 8 balls. Season to taste with salt. Wash hands.
+- Form mixture into 16 balls. Season to taste with salt. Wash hands.
 
 ### 4. Cook Fritters
 - Line a plate with paper towel.

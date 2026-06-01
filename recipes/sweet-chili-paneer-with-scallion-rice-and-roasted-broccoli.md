@@ -1,23 +1,23 @@
 # Sweet Chili Paneer with Scallion Rice & Roasted Broccoli
 tags: paneer, broccoli, rice, bell-pepper, scallion, sweet-chili, soy, garlic, onion, vegetarian, roasted
 time: 30min
-serves: 2
+serves: 4
 source: FreshPrep
 
 ## Ingredients
-- 1 package paneer
-- 275 g broccoli
-- 1 green bell pepper
-- 20 g green onion
-- 50 g red onion
-- 3/4 cup basmati rice
-- 1 tbsp butter
-- 2 tsp minced garlic
-- 4 tsp minced ginger
-- 2 tbsp sweet chili sauce
-- 5 tbsp soy blend (2 tbsp soy sauce, 1½ tbsp coconut sugar, 1 tbsp ketchup, 2 tsp rice vinegar)
-- 4 tbsp flour spice blend (2 tbsp cornstarch, 2 tbsp flour, ½ tsp each ground ginger, granulated garlic, black pepper, paprika)
-- 1 tbsp organic virgin coconut oil
+- 2 packages paneer
+- 550 g broccoli
+- 2 greens bell pepper
+- 40 g green onion
+- 100 g red onion
+- 1 1/2 cups basmati rice
+- 2 tbsp butter
+- 4 tsp minced garlic
+- 8 tsp minced ginger
+- 4 tbsp sweet chili sauce
+- 10 tbsp soy blend (2 tbsp soy sauce, 1½ tbsp coconut sugar, 1 tbsp ketchup, 2 tsp rice vinegar)
+- 8 tbsp flour spice blend (2 tbsp cornstarch, 2 tbsp flour, ½ tsp each ground ginger, granulated garlic, black pepper, paprika)
+- 2 tbsp organic virgin coconut oil
 - red pepper flakes to taste
 - salt and pepper to taste
 
@@ -31,13 +31,13 @@ source: FreshPrep
 
 ### 2. Begin Rice
 - Rinse and drain rice in a fine-mesh sieve.
-- Add rice, coconut oil and half of the ginger to a small pot with 1¼ cups salted water and bring to a boil.
+- Add rice, coconut oil and half of the ginger to a small pot with 2½ cups salted water and bring to a boil.
 - Reduce heat to low and cover with a lid. Cook for 12–15 minutes or until grains are tender.
 
 ### 3. Prepare Ingredients
 - Cut bell pepper in half, remove stem and seeds, and dice into 1-inch pieces.
 - Thinly slice scallions. Drain paneer and pat dry with paper towel. Season with 1/2 tsp salt.
-- In a large bowl, whisk together 1/3 cup water, flour spice blend and red pepper flakes to taste.
+- In a large bowl, whisk together 2/3 cup water, flour spice blend and red pepper flakes to taste.
 
 ### 4. Cook Paneer
 - Toss paneer in bowl with batter.

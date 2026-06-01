@@ -1,26 +1,26 @@
 # Chicken Mushroom Arugula Risotto
 tags: chicken, mushroom, arugula, risotto, arborio-rice, parmesan, white-wine, shallot, garlic, italian
 time: 40min
-serves: 2
+serves: 4
 
 ## Ingredients
-- 1 package diced chicken breast
-- 200 g mushrooms
-- 40 g arugula
-- 3/4 cup arborio rice
-- 50 g shallot
-- 1 tbsp garlic
-- 1/3 cup parmesan cheese
-- approx. 1/3 cup white cooking wine
-- 1 tsp chicken stock concentrate
-- 1 tbsp olive oil (plus more for chicken)
-- 2 tbsp + 1 tbsp butter
+- 2 packages diced chicken breast
+- 400 g mushrooms
+- 80 g arugula
+- 1 1/2 cups arborio rice
+- 100 g shallot
+- 2 tbsp garlic
+- 2/3 cup parmesan cheese
+- approx. 2/3 cup white cooking wine
+- 2 tsp chicken stock concentrate
+- 2 tbsp olive oil (plus more for chicken)
+- 4 tbsp + 1 tbsp butter
 - Salt and pepper to taste
 
 ## Steps
 
 ### 1. Prepare Ingredients
-- Measure 3½ cups of hot water into a medium bowl.
+- Measure 7 cups of hot water into a medium bowl.
 - Whisk in stock concentrate until combined. Set aside.
 - Cut mushrooms into 1/4 inch slices.
 - Roughly chop arugula.
@@ -43,7 +43,7 @@ serves: 2
 
 ### 4. Finish Risotto
 - When grains of rice are just tender, add the chicken and mushrooms into the saucepan.
-- Add parmesan and 2 tbsp butter, stirring until risotto is creamy and chicken is cooked to internal temperature of 165°F (74°C).
+- Add parmesan and 4 tbsp butter, stirring until risotto is creamy and chicken is cooked to internal temperature of 165°F (74°C).
 - Stir in arugula for 1 minute or until just tender.
 - Season to taste with salt and pepper.
 

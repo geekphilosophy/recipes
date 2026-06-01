@@ -1,25 +1,25 @@
 # Creamy Mushroom Chicken with Potatoes, Asparagus & Gremolata
 tags: chicken, mushroom, asparagus, potato, cream, lemon, parsley, gremolata, garlic, freshprep, roasted
 time: 30min
-serves: 2
+serves: 4
 source: FreshPrep
 
 ## Ingredients
-- 1 package diced chicken breast
-- 300 g baby potatoes
-- 100 g mushrooms
-- 180g asparagus
-- 60g onion
-- 4 tsp minced garlic
-- 1/3 cup cream
-- 2 tsp orange juice concentrate
-- 1 tbsp white wine vinegar
-- 2 tbsp almonds
-- 1/4 tsp mushroom stock cube
-- 2 tbsp grated parmesan cheese
-- 1 tsp herb blend
-- 1/4 cup fresh parsley
-- 1 lemon
+- 2 packages diced chicken breast
+- 600 g baby potatoes
+- 200 g mushrooms
+- 360g asparagus
+- 120g onion
+- 8 tsp minced garlic
+- 2/3 cup cream
+- 4 tsp orange juice concentrate
+- 2 tbsp white wine vinegar
+- 4 tbsp almonds
+- 1/2 tsp mushroom stock cube
+- 4 tbsp grated parmesan cheese
+- 2 tsp herb blend
+- 1/2 cup fresh parsley
+- 2 lemons
 - olive oil
 - salt and pepper to taste
 
@@ -50,7 +50,7 @@ source: FreshPrep
 - Add mushrooms and onion. Cook for 2–4 minutes, stirring occasionally, until chicken and onions are golden.
 - Stir in remaining garlic and cook for 30 seconds, or until fragrant.
 - Add white wine vinegar and scrape bottom of skillet. Cook for 30 seconds, or until mostly evaporated.
-- Reduce heat to medium, stir in cream, 1 tsp herb blend, 1/2 cup water, crumbled stock cube and parmesan cheese.
+- Reduce heat to medium, stir in cream, 1 tsp herb blend, 1 cup water, crumbled stock cube and parmesan cheese.
 - Add remaining herb blend to taste.
 - Cook for 2–4 minutes until chicken reaches internal temperature of 165°F (74°C) and sauce has thickened.
 - Season to taste with pepper.

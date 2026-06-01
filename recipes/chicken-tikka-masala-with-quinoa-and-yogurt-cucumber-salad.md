@@ -1,24 +1,24 @@
 # Chicken Tikka Masala with Quinoa & Yogurt Cucumber Salad
 tags: chicken, tikka-masala, quinoa, cucumber, yogurt, cream, cilantro, tomato, onion, indian, spiced
 time: 20min
-serves: 2
+serves: 4
 source: FreshPrep
 
 ## Ingredients
-- 1 package diced chicken breast
-- 3/4 cup organic white quinoa
-- 120 g cucumber
-- 70 g onion
-- 1 tbsp minced garlic
-- 1 tbsp minced ginger
-- 1/2 cup Greek yogurt
-- 1/4 cup whipping cream
-- 4 tsp tomato paste
-- 3/4 cup diced tomatoes
-- 1 tbsp coconut sugar
-- 7 tsp tikka masala spice blend (1 tsp ground cardamom, 1 1/2 tsp cumin, 1 1/2 tsp garam masala, 1/2 tsp turmeric, 1 1/2 tsp coriander)
-- 8 g fresh cilantro
-- 1 tsp red pepper flakes
+- 2 packages diced chicken breast
+- 1 1/2 cups organic white quinoa
+- 240 g cucumber
+- 140 g onion
+- 2 tbsp minced garlic
+- 2 tbsp minced ginger
+- 1 cup Greek yogurt
+- 1/2 cup whipping cream
+- 8 tsp tomato paste
+- 1 1/2 cups diced tomatoes
+- 2 tbsp coconut sugar
+- 14 tsp tikka masala spice blend (1 tsp ground cardamom, 1 1/2 tsp cumin, 1 1/2 tsp garam masala, 1/2 tsp turmeric, 1 1/2 tsp coriander)
+- 16 g fresh cilantro
+- 2 tsp red pepper flakes
 - olive oil
 - salt and pepper to taste
 
@@ -31,7 +31,7 @@ source: FreshPrep
 
 ### 2. Cook Quinoa
 - Rinse quinoa for 1 minute and drain in a fine-mesh sieve.
-- Add quinoa to a small pot with 1 cup salted water and bring to a boil.
+- Add quinoa to a small pot with 2 cups salted water and bring to a boil.
 - Reduce heat to low and cover with a lid. Cook for 18–20 minutes or until grains are tender.
 - Turn off heat and keep covered; let steam for 5 minutes.
 
@@ -49,7 +49,7 @@ source: FreshPrep
 - Heat 1 tbsp oil in the same skillet over medium.
 - Once hot, add onion, garlic, ginger and tomato paste. Cook for 3 minutes or until softened.
 - Stir in remaining spice blend and red pepper flakes to taste for 30 seconds, or until fragrant.
-- Add diced tomatoes, coconut sugar and 1/2 cup water. Use a wooden spoon to scrape any stuck browned bits from bottom of pan.
+- Add diced tomatoes, coconut sugar and 1 cup water. Use a wooden spoon to scrape any stuck browned bits from bottom of pan.
 - Bring to a low boil and add cream. Season with salt and pepper to taste.
 - Add chicken and cook for another 2–4 minutes until sauce has thickened and chicken reaches internal temperature of 165°F (74°C).
 
