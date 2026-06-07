@@ -3,7 +3,7 @@
 #
 # Usage:
 #   ./add-recipe.sh path/to/recipe.md    # single file with preview loop
-#   ./add-recipe.sh                      # batch: validate + sync all pending changes
+#   ./add-recipe.sh                      # batch: copy intake/*.md → recipes/, validate, commit
 
 set -e
 cd "$(dirname "$0")"
@@ -57,6 +57,17 @@ if [ -n "$1" ]; then
 
 # ── Batch sync mode ───────────────────────────────────────────
 else
+  # Copy intake/*.md → recipes/
+  INTAKE_FILES=$(find intake -maxdepth 1 -name "*.md" 2>/dev/null | sort || true)
+  if [ -n "$INTAKE_FILES" ]; then
+    echo "Importing from intake/..."
+    while IFS= read -r f; do
+      BASENAME=$(basename "$f")
+      cp "$f" "recipes/$BASENAME"
+      echo "  Copied $f → recipes/$BASENAME"
+    done <<< "$INTAKE_FILES"
+  fi
+
   # Find new or modified files in recipes/ (unstaged)
   PENDING=$(git status --porcelain recipes/ \
     | grep -E "^\?\?|^ M|^M " \
@@ -90,6 +101,12 @@ else
   esac
 
   git add recipes/
+  if [ -n "$INTAKE_FILES" ]; then
+    while IFS= read -r f; do
+      rm "$f"
+    done <<< "$INTAKE_FILES"
+    echo "Cleaned up intake/."
+  fi
   NAMES=$(echo "$PENDING" | xargs -I{} basename {} .md | paste -sd ", " -)
   git commit -m "sync: $COUNT recipe(s) — $NAMES"
   git push

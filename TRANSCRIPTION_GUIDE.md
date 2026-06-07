@@ -7,7 +7,9 @@ Derived from real transcription decisions — update as new cases arise.
 
 ## Ingredients
 
-**Always omit:** sambal — drop it from both the ingredient list and any step that references it. We never use it.
+**Always omit:**
+- **Sambal** — drop from both the ingredient list and any step that references it. We never use it.
+- **Customized protein** — drop any ingredient line, parenthetical note, or instruction step referring to a "customized protein" swap option (e.g. "diced chicken breast" as an alternative to tofu).
 
 **Garlic:** always list as `garlic`, never `minced garlic`. Garlic is always minced in this kitchen.
 
